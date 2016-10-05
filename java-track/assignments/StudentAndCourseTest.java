@@ -74,6 +74,7 @@ public class StudentAndCourseTest extends TestCase {
 			credits += c;
 			gpatotal += g * c;
 			s.submitGrade(g, c);
+			//System.out.println(s.getGPA());
 			assertEquals("GPA computed incorrectly", gpatotal / credits, s.getGPA(), 0.01);
 			assertTrue("GPA not rounded", (s.getGPA() + "").length() < 6);
 		}
@@ -81,9 +82,11 @@ public class StudentAndCourseTest extends TestCase {
 
 	@Test
 	public void testComputeTuition() {
+		//TODO WRECK THIS STUFF!!
 		Student s = new Student("D", "S", 1);
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
+			System.out.println(s.computeTuition());
 			assertEquals("Compute tution not working properly", (i+1) * 1333.33, s.computeTuition());
 		}
 
@@ -92,6 +95,7 @@ public class StudentAndCourseTest extends TestCase {
 
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
+			System.out.println(s.computeTuition());
 			assertEquals("Compute tution not working properly", 1333.33 * (i+1) + 20000.0, s.computeTuition());
 		}
 	}
@@ -136,6 +140,7 @@ public class StudentAndCourseTest extends TestCase {
 			double b =  (Math.random() * 5000);
 			int c = (int)Math.random() * 500000;
 			Student s = new Student("" + a, "" + b, c);
+			//System.out.println(s);
 			assertTrue("student toString does not contain entire student name", s.toString().contains("" + a));
 			assertTrue("student toString does not contain entire student name", s.toString().contains("" + b));
 			assertTrue("student toString does not contain student ID", s.toString().contains("" + c));
@@ -148,6 +153,7 @@ public class StudentAndCourseTest extends TestCase {
 
 	// TESTING COURSE CLASS HERE . . . FEEL FREE TO WRITE YOUR OWN, BUT DON'T CHANGE THIS ONE
 	// once again, we are watching you
+	//Scary!!!
 
 	@Test
 	public void testCourseInit() {
@@ -227,6 +233,29 @@ public class StudentAndCourseTest extends TestCase {
 		}
 	}
 
+/// Brian's crappy tests
+	@Test
+	public void testTheSubmitGradeOptionTheBestWay() {
+		Student one = new Student("Bob", "Smith", 12345);
+		
+		one.submitGrade(3.0, 3);
+		//System.out.println(one);
+		//System.out.println(one.getGPA());
+		//System.out.println(one.getCredits());
+		//System.out.println(one.getQualityScoreTotal());
+		double variable = one.getQualityScoreTotal();
+		//System.out.println(variable);
+		assertEquals("Something wrong with quality score", variable, 9.0);
+	}
+	
+	public void testTheTuitionTheBestWay() {
+		Student one = new Student("Jan", "Smith", 555678);
+		
+		one.submitGrade(3.0, 3);
+		double tuitionValue = one.computeTuition();
+		//System.out.println(tuitionValue);
+		assertEquals("the best way ", tuitionValue, 4000.0);
+	}
 
-
-}
+}//EOF
+	
