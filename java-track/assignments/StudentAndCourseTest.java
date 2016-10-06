@@ -86,7 +86,7 @@ public class StudentAndCourseTest extends TestCase {
 		Student s = new Student("D", "S", 1);
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
-			System.out.println(s.computeTuition());
+			//System.out.println(s.computeTuition());
 			assertEquals("Compute tution not working properly", (i+1) * 1333.33, s.computeTuition());
 		}
 
@@ -95,7 +95,7 @@ public class StudentAndCourseTest extends TestCase {
 
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
-			System.out.println(s.computeTuition());
+			//System.out.println(s.computeTuition());
 			assertEquals("Compute tution not working properly", 1333.33 * (i+1) + 20000.0, s.computeTuition());
 		}
 	}
@@ -256,6 +256,40 @@ public class StudentAndCourseTest extends TestCase {
 		//System.out.println(tuitionValue);
 		assertEquals("the best way ", tuitionValue, 4000.0);
 	}
+	
+	public void testTheCourseClassTheBestWay() {
+		Student[] allArray;
+		allArray = new Student[3];
+		allArray[0] = new Student("Bob", "Smith", 12);
+		allArray[1] = new Student("Sally", "OConner", 13);
+		allArray[2] = new Student("Fred", "Carmichael", 14);
+		for(int i = 0; i < 3; i++){
+			//System.out.println(allArray[i]);
+		}
+		Course mathLike = new Course("MathLike", 3, 2);
+		for(int j = 0; j < 3; j++){
+			//System.out.println("Enrolled: " + mathLike.addStudent(allArray[j]));
+		}
+		
+	}
+	
+	public void testGenerateRoster() {
+		Student[] allArray;
+		allArray = new Student[3];
+		allArray[0] = new Student("Bob", "Smith", 12);
+		allArray[1] = new Student("Sally", "OConner", 13);
+		allArray[2] = new Student("Fred", "Carmichael", 14);
+		for(int i = 0; i < 3; i++){
+			//System.out.println(allArray[i]);
+		}
+		Course mathLike = new Course("MathLike", 3, 2);
+		for(int j = 0; j < 3; j++){
+			mathLike.addStudent(allArray[j]);
+		}
+		assertEquals("testGenerator not working", mathLike.generateRoster(), "Bob Smith\nSally OConner\n");
+	}
+	
+	
 
 }//EOF
 	

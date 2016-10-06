@@ -22,6 +22,17 @@ public class Student {
 		this.qualityScoreTotal = 0.0;
 		
 	}
+	//overloaded version for createLegacy function
+	public Student(String firstName, String lastName, int studentId, double gpa, int credits, double qualityScoreTotal) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.studentId = studentId;
+		this.gpa = gpa;
+		this.credits = credits;
+		this.classStanding = "Freshman";
+		this.qualityScoreTotal = qualityScoreTotal;
+		
+	}
 	
 
 
@@ -137,6 +148,7 @@ public class Student {
 	
 	//computeTuition() returns the tuition paid
 	public double computeTuition() {
+		
 		double whole = Math.floor(this.getCredits() / 15); 
 		double remainder = this.getCredits() % 15;
 		double rate = 1333.33;
@@ -146,6 +158,34 @@ public class Student {
 		//System.out.println("Tuition is: " + tuition);
 		return tuition;
 		
+		
+		/*
+		double rate = 20000.0 / 15;
+		double tuition = rate * getCredits();
+		tuition = Math.round(tuition * 100);
+		tuition = tuition/100;
+		System.out.println("tuition is:  " + tuition);;
+		return tuition;
+		*/
+	}
+	//String firstName, String lastName, int studentId, double gpa, int credits, double qualityScoreTotal
+	public Student createLegacy(Student mom, Student dad) {
+		String firstName = mom.getName();
+		String lastName = dad.getName();
+		int studentId = mom.getStudentID() + dad.getStudentID();
+		double gpa = (mom.getGPA() + dad.getGPA() ) / 2;
+		int credits = 0;
+		if(mom.getCredits() > dad.getCredits()) {
+			credits = mom.getCredits();
+		} else {
+			credits = dad.getCredits();
+		}
+		double qualityScoreTotal = gpa * credits;
+		
+		
+		
+		Student toby = new Student(firstName, lastName, studentId, gpa, credits, qualityScoreTotal);
+		return toby;
 	}
 	
 
