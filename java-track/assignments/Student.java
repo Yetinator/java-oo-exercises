@@ -148,16 +148,24 @@ public class Student {
 	
 	//computeTuition() returns the tuition paid
 	public double computeTuition() {
+		double whole = this.getCredits() / 15; 
+		double remainder = this.getCredits() % 15;
+		double rate = 1333.33;
+		double tuition = remainder * rate + whole * 20000;
+		//System.out.println("Tuition is: " + tuition);
+		return tuition;
 		
+		
+		/*
 		double whole = Math.floor(this.getCredits() / 15); 
 		double remainder = this.getCredits() % 15;
 		double rate = 1333.33;
 		double tuition = remainder * rate + whole * 20000.0;
-		tuition = Math.round(tuition * 100);
-		tuition = tuition/100;
+		tuition = Math.round(tuition * 100.0);
+		tuition = tuition/100.0;
 		//System.out.println("Tuition is: " + tuition);
 		return tuition;
-		
+		*/
 		
 		/*
 		double rate = 20000.0 / 15;
