@@ -1,7 +1,7 @@
 package robot;
 
 public class Robot {
-
+/*
 	public static void main(String[] args) {
 		Robot bob = new Robot("bobby", 1, 1, 90, 5);
 		System.out.println(bob);
@@ -10,16 +10,26 @@ public class Robot {
 		System.out.println(bob);
 		Robot alice = new Robot("alice",1,1,90,5);
 		System.out.println(alice.distance(bob));
-		
+	}*/	
 
-	}
-	//Feilds
+	
+	//Fields
 	private String Name;
-	private int xPosition, yPosition;
+	protected int xPosition, yPosition;
 	private int speed;
 	private Integer heading;
+	private int hitpoints;
 	
+	public int getHitpoints(){
+		return hitpoints;
+	}
 	
+	public void setHitpoints(int num){
+		this.hitpoints = num;
+	}
+	public void changeHitpoints(int change){
+		this.hitpoints = this.hitpoints + change;
+	}
 	/**
 	 * @return the name
 	 */
@@ -80,13 +90,14 @@ public class Robot {
 	public void setHeading(int heading) {
 		this.heading = heading;
 	}
-	public Robot(String Name, int xPosition, int yPosition, int heading, int speed)
+	public Robot(String Name, int xPosition, int yPosition, int heading, int speed, int hitpoints)
 	{
 		this.Name = Name;
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 		this.speed = speed;
 		this.heading = heading;
+		this.hitpoints = hitpoints;
 	}
 	//move
 	public void move(int time)

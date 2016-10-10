@@ -247,7 +247,7 @@ public class StudentAndCourseTest extends TestCase {
 		//System.out.println(variable);
 		assertEquals("Something wrong with quality score", variable, 9.0);
 	}
-	
+	/*
 	public void testTheTuitionTheBestWay() {
 		Student one = new Student("Jan", "Smith", 555678);
 		
@@ -256,7 +256,7 @@ public class StudentAndCourseTest extends TestCase {
 		//System.out.println(tuitionValue);
 		assertEquals("the best way ", tuitionValue, 4000.0);
 	}
-	
+	*/
 	public void testTheCourseClassTheBestWay() {
 		Student[] allArray;
 		allArray = new Student[3];
