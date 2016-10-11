@@ -9,7 +9,7 @@ public class DesignProblems {
 		System.out.println(aRectangle);
 		Fraction a = new Fraction(32,64);
 		System.out.println(a.simplify());
-		Robot eie = new Robot("eie", 1,1,90,5);
+		Robot eie = new Robot("eie", 1,1,90,5, 5);
 		System.out.println(eie);
 	}
 
