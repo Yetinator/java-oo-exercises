@@ -11,6 +11,11 @@ public class Quiz {
 	}
 	
 	private Question[] questions = new Question[10];
+	private MultipleChoiceQ question1 = new MultipleChoiceQ("How many Chipotle burritos can Steve eat in an hour",
+															"12", 
+															["13",
+															"11.5",
+															"20"]);	
 	
 
 }
