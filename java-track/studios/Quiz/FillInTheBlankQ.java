@@ -6,7 +6,7 @@ public class FillInTheBlankQ extends Question {
 		
 	}
 	public String AskMe(){
-		String text = super.AskMe() + "\n" + ">>";
+		String text = super.AskMe();
 		
 		return text;
 	}

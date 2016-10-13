@@ -28,8 +28,19 @@ public class Question {
 	}
 		
 	public void user() {
+		System.out.print(">>");
 		Scanner reader = new Scanner(System.in);
 		this.UserInput = reader.next();
+		
+	}
+	
+	public boolean grademe() {
+		
+		if(this.AnswerText.equals(this.UserInput)){
+			return true;
+		}else{
+			return false;
+		}
 		
 	}
 	
