@@ -19,6 +19,7 @@ public class Robot {
 	private int speed;
 	private Integer heading;
 	private int hitpoints;
+	protected RobotBehavior current;
 	
 	public int getHitpoints(){
 		return hitpoints;
@@ -84,6 +85,10 @@ public class Robot {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+	
+	public void setBehavior(RobotBehavior current){
+		this.current = current;
+	}
 	/**
 	 * @param heading the heading to set
 	 */
@@ -147,6 +152,71 @@ public class Robot {
 		int yDist = Math.abs(this.yPosition - other.yPosition);
 		double totalDist = Math.sqrt(Math.pow(xDist, 2)  + Math.pow(yDist, 2));
 		return (int) (totalDist);
+	}
+	
+	public int opponentHeading(Robot other){
+		//returns the most notable direction of the opponent
+		int xDist = this.xPosition - other.xPosition;
+		int yDist = this.yPosition - other.yPosition;
+		int opponent = 0;
+		if(Math.abs(xDist) > Math.abs(yDist)){
+			//xdist Greater
+			if(xDist > 0){
+				//this means this is further right than other
+				opponent = 270;
+			}else{
+				opponent = 90;
+			}
+		}else {
+			//ydist Greater
+			if (yDist > 0) {
+				//this means this is further north than other(opponent south)
+				opponent = 180;
+			
+			}else{
+				opponent = 0;
+			}
+			
+			
+		}
+		
+		return opponent;
+	}
+	
+	public void behaviorMenu(int menuChoice){
+		/*
+	 0) error
+	 1) turn right
+	 2) turn left
+	 3)	move forward
+	 4)
+	 5)
+	 6)
+	 7)
+	 8)
+	 9)
+	 10)
+*/
+		switch(menuChoice){
+			case 0:
+				System.out.println("error in menuChoice case 0");
+				break;
+			case 1:
+				rotate(false);
+				break;
+			case 2:
+				rotate(true);
+				break;
+			case 3:
+				move(1);
+				break;
+			case 4:
+				//other menu
+				break;
+			default:
+				System.out.println("error in menuChoice falls through to defualt");
+				break;
+		}
 	}
 	
 	//return a string
