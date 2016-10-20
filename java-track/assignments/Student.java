@@ -177,7 +177,7 @@ public class Student {
 		*/
 	}
 	//String firstName, String lastName, int studentId, double gpa, int credits, double qualityScoreTotal
-	public Student createLegacy(Student mom, Student dad) {
+	public static Student createLegacy(Student mom, Student dad) {
 		String firstName = mom.getName();
 		String lastName = dad.getName();
 		int studentId = mom.getStudentID() + dad.getStudentID();

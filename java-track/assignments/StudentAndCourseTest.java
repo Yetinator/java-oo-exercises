@@ -113,7 +113,7 @@ public class StudentAndCourseTest extends TestCase {
 			int c2 = (int)(Math.random() * 120 + 1);
 			double g2 = Math.round(Math.random() * 4000) / 1000.0;
 			ss.submitGrade(g2, c2);
-			Student bb = s.createLegacy(s, ss);
+			Student bb = Student.createLegacy(s, ss);
 			assertTrue("create baby not setting name properly", bb.getName().contains(s.getName()) && bb.getName().contains(ss.getName()));
 			assertEquals("create baby not setting gpa properly", (g + g2) / 2, bb.getGPA(), 0.01);
 			assertEquals("create baby not setting credits properly", bb.getCredits(), Math.max(c, c2));
@@ -285,6 +285,17 @@ public class StudentAndCourseTest extends TestCase {
 			mathLike.addStudent(allArray[j]);
 		}
 		assertEquals("testGenerator not working", mathLike.generateRoster(), "Bob Smith\nSally OConner\n");
+	}
+	
+	@Test
+	public void testGetCourses() {
+		Course math = new Course("Math 101", 3, 30);
+		Course english = new Course("english", 3, 25);
+		//assertEquals("getCourses all wrong!", Course.getAllCourses(), "All courses: [Course [name=Math 101, credits=3, seatsRemaining=30, roster=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]], Course [name=english, credits=3, seatsRemaining=25, roster=[null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]]]");
+		//assertThat(Course.getAllCourses(), hasItems(math, english));
+		//ArrayList<Course> Test = new ArrayList<>Course.getAllCourses();
+		//assertEquals("getCourses all wrong!", Course.)
+		assertNotNull("Should not be null, get all courses", Course.getAllCourses());
 	}
 	
 	

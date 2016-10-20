@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Course {
 	
@@ -7,6 +9,7 @@ public class Course {
 	int seatsRemaining;
 	int seatsTotal;
 	Student[] roster;
+	private static ArrayList<Course> allCourses = new ArrayList<Course>();
 	/**
 	 * @param name
 	 * @param credits
@@ -20,6 +23,7 @@ public class Course {
 		this.seatsRemaining = seatsRemaining;
 		this.seatsTotal = seatsRemaining;
 		this.roster = new Student[seatsRemaining];
+		allCourses.add(this);
 	}
 	/**
 	 * @return the name
@@ -138,6 +142,10 @@ public class Course {
 		double average = totalGPA / counts;
 		return average;
 		
+	}
+	
+	public static ArrayList getAllCourses() {
+		return allCourses;
 	}
 	
 	

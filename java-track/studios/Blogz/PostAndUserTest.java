@@ -5,6 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class PostAndUserTest {
+	
+	private static boolean initialized = false;
+	
+	public PostAndUserTest() {
+		//this code runs once per @Test
+		 
+		if (!initialized) {
+	            // code that should only run once goes here
+	            initialized = true;
+	        }
+	}
 
 	@Test
 	public void testConstruct() {
@@ -37,6 +48,16 @@ public class PostAndUserTest {
 		assertTrue(User.isValidUserName("Sal2ly"));
 		assertFalse(User.isValidUserName("1Sally"));
 
+	}
+	
+	@Test
+	public void checkPost() {
+		Post a = new Post("This", "and That");
+		System.out.println(a.getCreated());
+		System.out.println(a.getModified());
+		assertEquals("The Body is Wrong.", a.getBody(), "and That");
+		assertEquals("The Title is wrong", a.getTitle(), "This");
+		
 	}
 
 }

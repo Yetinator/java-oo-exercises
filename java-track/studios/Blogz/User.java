@@ -1,14 +1,22 @@
 package Blogz;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class User {
 	
 	private String hash;
 	private String password; // password should not be stored?
 	private String userName;
+	public static List<User> Subscribers = new ArrayList();
 	
 	public User(String userName, String password) {
 		//constructor
-		this.userName = userName;
+		if(isValidUserName(userName))
+			this.userName = userName;
+		//TODO do I need a password test(isValidPassword is to check the Hash
 		this.hash = HashPassword(password);
 		
 	}
@@ -19,6 +27,11 @@ public class User {
 		 * characters long, starts with a letter, and contains only 
 		 * letters, numbers, -, and _
 		 */
+		Pattern p = Pattern.compile("[a-zA-Z][a-zA-Z0-9_-]{4,11}");
+		Matcher m = p.matcher(userNameAttempt);
+		boolean b = m.matches();
+		return b;
+		/*
 		boolean lengthGood = false;
 		boolean startsLetter = false;
 		boolean charactorsGood = true;//this one starts good
@@ -35,7 +48,7 @@ public class User {
 		boolean dash = false;
 		Character position;
 		
-		/*
+		
 		for(int i = 0; i < userNameAttempt.length(); i++){
 			let = false;
 			num = false;

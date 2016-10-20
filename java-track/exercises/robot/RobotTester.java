@@ -73,5 +73,31 @@ public class RobotTester {
 		assertEquals("hitpoints wrong", box1.getHitpoints(), 8);
 	
 	}
+	
+	@Test
+	public void testBehavior() {
+		Robot box1 = new Robot("box one", 1 ,1, 0, 5, 5);
+		Robot box2 = new Robot("box two", 6, 6, 0, 5, 5);
+		RobotBehavior a = new AggressiveBehavior(box1, box2);
+		try 
+		{
+			a.doNextMove(box1, box2);
+			assertTrue(false);
+		}
+		catch(IllegalArgumentException e)
+		{
+			assertTrue(true);
+		}
+		box1.setBehavior(a);
+		try 
+		{
+			a.doNextMove(box1, box2);
+			assertTrue(true);
+		}
+		catch(IllegalArgumentException e)
+		{
+			assertTrue(false);
+		}
+	}
 
 }

@@ -31,6 +31,9 @@ public class AggressiveBehavior implements RobotBehavior {
 	}
 	@Override
 	public int doNextMove(Robot c, Robot d) {
+		//test for setBehavior();
+		if(c.current == null)
+			throw new IllegalArgumentException();
 		this.same = c;
 		this.other = d;
 		this.distance = same.distance(other);
