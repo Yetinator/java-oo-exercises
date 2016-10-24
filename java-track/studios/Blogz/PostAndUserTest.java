@@ -10,7 +10,6 @@ public class PostAndUserTest {
 	
 	public PostAndUserTest() {
 		//this code runs once per @Test
-		 
 		if (!initialized) {
 	            // code that should only run once goes here
 	            initialized = true;
@@ -57,6 +56,17 @@ public class PostAndUserTest {
 		System.out.println(a.getModified());
 		assertEquals("The Body is Wrong.", a.getBody(), "and That");
 		assertEquals("The Title is wrong", a.getTitle(), "This");
+		
+	}
+	
+	@Test 
+	public void checkUid() {
+		User Sally = new User("Sally", "dog");
+		User Bill = new User("Bill", "Cats");
+		//System.out.println(Bill.getUid());
+		//System.out.println(Sally.getUid());
+		assertFalse("Uid all messed", Bill.getUid() == Sally.getUid() );
+		//TODO make one for posts also
 		
 	}
 

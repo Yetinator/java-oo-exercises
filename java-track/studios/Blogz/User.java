@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class User {
+public class User extends Entity{
 	
 	private String hash;
 	private String password; // password should not be stored?
@@ -14,6 +14,7 @@ public class User {
 	
 	public User(String userName, String password) {
 		//constructor
+		super();
 		if(isValidUserName(userName))
 			this.userName = userName;
 		//TODO do I need a password test(isValidPassword is to check the Hash

@@ -2,13 +2,14 @@ package Blogz;
 
 import java.util.Date;
 
-public class Post {
+public class Post extends Entity{
 	private String body;
 	private String title;
 	private final Date created = new Date();
 	private Date modified;
 	
 	public Post(String title, String body) {
+		super();
 		modified = new Date();
 		this.body = body;
 		this.title = title;
