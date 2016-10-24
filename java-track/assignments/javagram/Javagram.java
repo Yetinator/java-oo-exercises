@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Javagram {
+	
+	public static String[] optionsMenu = {"exit", "BlueFilter"};
 
 	public static void main(String[] args) {
 
@@ -16,6 +18,9 @@ public class Javagram {
 		String relPath;
 		Picture picture = null;
 		Scanner in = new Scanner(System.in);
+		boolean failedSelection = true;
+		Filter filter;
+		
 		
 		// prompt user for image to filter and validate input
 		do {
@@ -38,15 +43,29 @@ public class Javagram {
 			}
 			
 		} while(picture == null);
+			
 		
-		// TODO - prompt user for filter and validate input
+		do{
+			failedSelection = false;
 		
-		// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
-		Filter filter = getFilter();			
-
+			// TODO - prompt user for filter and validate input
+			int user = menuFunction();
+			// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
+			try {
+				filter = getFilter(user);			
+			} catch (Exception e){
+				System.out.println("Bad selection. Try again.  ");
+				failedSelection = true;
+				
+			}
+		}while(failedSelection);
+		
 		// filter and display image
-		Picture processed = filter.process(picture);
-		processed.show();
+		
+		if(filter != null){
+			Picture processed = filter.process(picture);
+			processed.show();
+		}
 		
 		System.out.println("Image successfully filtered");
 		
@@ -69,12 +88,37 @@ public class Javagram {
 		in.close();
 	}
 	
-	// TODO - refactor this method to accept an int parameter, and return an instance of the Filter interface
-	// TODO - refactor this method to thrown an exception if the int doesn't correspond to a filter
-	private static Filter getFilter() {
+	private static int menuFunction() {
+		System.out.println("Please Select an option");
+		for(int i = 0; i < optionsMenu.length ; i++){
+			System.out.println(i + "):  " + optionsMenu[i]);
+		}
+		int blah = 0;
+		Scanner men = new Scanner(System.in);
+		if (men.hasNextInt())
+			blah = men.nextInt();
+		else 
+			System.out.println("Bad Selection");
+		men.close();
+		return blah;
 		
+	}
+	
+	// TODO/done - refactor this method to accept an int parameter, and return an instance of the Filter interface
+	// TODO - refactor this method to thrown an exception if the int doesn't correspond to a filter
+	private static Filter getFilter(int selection) throws Exception {
+		
+		switch(selection){
+			case 1:
+				return new BlueFilter();
+			
+			default:
+				//default should be exit;
+				throw new Exception();
+				//return new BlueFilter();
+		}
 		// TODO - create some more filters, and add logic to return the appropriate one
-		return new BlueFilter();
+		
 		
 	}
 
