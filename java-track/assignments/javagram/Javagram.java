@@ -8,18 +8,19 @@ import java.util.Scanner;
 
 public class Javagram {
 	
-	public static String[] optionsMenu = {"exit", "BlueFilter"};
+	public static String[] optionsMenu = {"exit", "BlueFilter", "InvertFilter", "GrayscaleFilter"};
 
 	public static void main(String[] args) {
 
 		// Create the base path for images		
 		String[] baseParts = {System.getProperty("user.dir"), "images"};
 		String dir = String.join(File.separator, baseParts);
-		String relPath;
+		String relPath = null;
 		Picture picture = null;
 		Scanner in = new Scanner(System.in);
 		boolean failedSelection = true;
-		Filter filter;
+		Filter filter = null;
+		
 		
 		
 		// prompt user for image to filter and validate input
@@ -45,40 +46,50 @@ public class Javagram {
 		} while(picture == null);
 			
 		
-		do{
-			failedSelection = false;
 		
-			// TODO - prompt user for filter and validate input
-			int user = menuFunction();
-			// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
-			try {
-				filter = getFilter(user);			
-			} catch (Exception e){
-				System.out.println("Bad selection. Try again.  ");
-				failedSelection = true;
-				
-			}
-		}while(failedSelection);
+		// TODO - prompt user for filter and validate input
+		int user = -1;
+		do{
+			user = menuFunction(in);
+		//}while(user < 0 || user > optionsMenu.length-1);
+		// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
+		try{
+			filter = getFilter(user);			
+		}catch(Exception e){
+			System.out.println("bad getFilter operation.");
+			
+		}
+		}while(filter == null);//alternate
 		
 		// filter and display image
 		
-		if(filter != null){
-			Picture processed = filter.process(picture);
-			processed.show();
-		}
+		
+		Picture processed = filter.process(picture);
+		processed.show();
+		
 		
 		System.out.println("Image successfully filtered");
 		
 		// save image, if desired
-		
+		String fileName = null;
+		boolean OverWriteProtect = true;
+		String checkWrite = "n";
+		do{
 		System.out.println("Save image to (relative to " + dir + ") (type 'exit' to quit w/o saving):");
-		String fileName = in.next();
+		fileName = in.next();
+		if(fileName.equals(relPath)){
+			System.out.println("This will overwrite the original.  Are you sure? (Y/N) ");
+			checkWrite = in.next();
+		}
+		if(checkWrite.equals("y") || checkWrite.equals("Y"))
+			OverWriteProtect = false;
 		
+		}while(fileName.equals(relPath) && OverWriteProtect);
 		// TODO - if the user enters the same file name as the input file, confirm that they want to overwrite the original
 		
 		if (fileName.equals("exit")) {
 			System.out.println("Image not saved");
-		} else {
+		}else {
 			String absFileName = dir + File.separator + fileName;
 			processed.save(absFileName);
 			System.out.println("Image saved to " + absFileName);
@@ -88,18 +99,20 @@ public class Javagram {
 		in.close();
 	}
 	
-	private static int menuFunction() {
+	private static int menuFunction(Scanner in) {
 		System.out.println("Please Select an option");
 		for(int i = 0; i < optionsMenu.length ; i++){
 			System.out.println(i + "):  " + optionsMenu[i]);
 		}
+		
 		int blah = 0;
-		Scanner men = new Scanner(System.in);
-		if (men.hasNextInt())
-			blah = men.nextInt();
-		else 
-			System.out.println("Bad Selection");
-		men.close();
+		//Scanner men = new Scanner(System.in);
+		
+			blah = in.nextInt();
+		 
+			//System.out.println("Bad Selection");
+		
+		
 		return blah;
 		
 	}
@@ -111,6 +124,10 @@ public class Javagram {
 		switch(selection){
 			case 1:
 				return new BlueFilter();
+			case 2:
+				return new InvertFilter();
+			case 3:
+				return new GrayscaleFilter();
 			
 			default:
 				//default should be exit;
