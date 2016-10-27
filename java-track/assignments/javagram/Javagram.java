@@ -105,11 +105,13 @@ public class Javagram {
 			System.out.println(i + "):  " + optionsMenu[i]);
 		}
 		
-		int blah = 0;
+		int blah = -1;
+		String dumbdumb;
 		//Scanner men = new Scanner(System.in);
-		
+		if(in.hasNextInt())
 			blah = in.nextInt();
-		 
+		else
+			dumbdumb = in.next();
 			//System.out.println("Bad Selection");
 		
 		
