@@ -298,6 +298,18 @@ public class StudentAndCourseTest extends TestCase {
 		assertNotNull("Should not be null, get all courses", Course.getAllCourses());
 	}
 	
+	@Test
+	public void testStudentEquals() {
+		Student bob = new Student("Bob", "Yo", 12345);
+		Student stan = new Student("Stan", "Lee", 12345);
+		Student bobby = new Student("Bob", "Yo", 12356);
+		assertTrue(bob.equals(stan));
+		assertTrue(stan.equals(bob));
+		assertFalse(stan.equals(bobby));
+		assertFalse(bob.equals(bobby));
+		
+	}
+	
 	
 
 }//EOF

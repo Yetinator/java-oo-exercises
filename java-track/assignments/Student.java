@@ -196,5 +196,12 @@ public class Student {
 		return toby;
 	}
 	
+	public boolean equals(Student other){
+		if(this.getStudentID() == other.getStudentID())
+			return true;
+		else
+			return false;
+	}
+	
 
 }
