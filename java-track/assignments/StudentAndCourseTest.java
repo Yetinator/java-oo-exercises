@@ -310,6 +310,18 @@ public class StudentAndCourseTest extends TestCase {
 		
 	}
 	
+	@Test
+	public void testCourseEquals() {
+		Course Math = new Course("Math 101", 3,30);
+		Course english = new Course("english", 3, 25);
+		Course Math2 = new Course("Math 101", 4, 30);
+		assertTrue(Math.equals(Math2));
+		assertFalse(Math.equals(english));
+		assertTrue(Math2.equals(Math));
+		assertTrue(Math.equals(Math));
+		assertFalse(english.equals(Math));
+		
+	}
 	
 
 }//EOF

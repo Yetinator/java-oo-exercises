@@ -89,6 +89,13 @@ public class User extends Entity{
 		return this.hash;
 	}
 	
-	
+	/*
+	public Boolean equals(User other){
+		if(this.userName == other.userName)
+			return true;
+		else
+			return false;
+	}
+	*/
 
 }

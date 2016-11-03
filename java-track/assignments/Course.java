@@ -148,6 +148,13 @@ public class Course {
 		return allCourses;
 	}
 	
+	public boolean equals(Course other){
+		if(this.getName() == other.getName())
+			return true;
+		else
+			return false;
+	}
+	
 	
 	
 	

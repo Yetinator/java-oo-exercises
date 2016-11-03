@@ -69,5 +69,20 @@ public class PostAndUserTest {
 		//TODO make one for posts also
 		
 	}
-
+	
+	@Test
+	public void testEntityEquals() {
+		User Sally = new User("Sally", "dog");
+		User Bill = new User("Bill", "Cats");
+		User Sally2 = new User("Sally", "Cat");
+		assertTrue(Sally.equals(Sally));
+		assertFalse(Sally.equals(Sally2));
+		assertFalse(Sally.equals(Bill));
+		User Bill2 = Bill;
+		assertTrue(Bill2.equals(Bill));
+		Post one = new Post("First Post", "Ladie Da");
+		assertFalse(one.equals(Sally));//TODO trying to test for same uid but different Class
+		
+		
+	}
 }
